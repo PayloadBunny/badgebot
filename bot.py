@@ -47,7 +47,19 @@ if not os.path.exists(DATA_DIR):
 
 # create badges.csv and write the header line
 if not os.path.isfile(BADGE_CSV):
-    fields = ['timestamp', 'CBBH-Path', 'CBBH-Exam', 'CPTS-Path', 'CPTS-Exam', 'CDSA-Path', 'CDSA-Exam', 'CWEE-Path', 'CWEE-Exam']
+    fields = [
+        'timestamp', 
+        'CBBH-Path', 
+        'CBBH-Exam', 
+        'CPTS-Path', 
+        'CPTS-Exam', 
+        'CDSA-Path', 
+        'CDSA-Exam', 
+        'CWEE-Path', 
+        'CWEE-Exam',
+        'CAPE-Path', 
+        'CAPE-Exam',       
+        ]
     with open(BADGE_CSV, 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f, delimiter=',')
         writer.writerow(fields)
@@ -80,6 +92,11 @@ BADGES = {
         'symbol': ":globe_with_meridians:",
         'path_id': os.getenv('CWEE_PATH'),
         'exam_id': os.getenv('CWEE_EXAM')
+    },
+    'CAPE': {
+        'symbol': ":woman_mage:",
+        'path_id': os.getenv('CAPE_PATH'),
+        'exam_id': os.getenv('CAPE_EXAM')
     }
 }
 

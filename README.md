@@ -42,6 +42,8 @@ BadgeBot is a Discord bot that periodically checks the number of your badges for
    CDSA_EXAM=cdsa_exam_id
    CWEE_PATH=cwee_path_id
    CWEE_EXAM=cwee_exam_id
+   CAPE_PATH=cape_path_id
+   CAPE_EXAM=cape_exam_id
    ````
 
 5. **Run the bot:**
