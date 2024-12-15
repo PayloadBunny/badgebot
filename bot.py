@@ -172,6 +172,23 @@ def generate_update_message(differences, current_badges):
     message += f"*Last update: {current_badges[0]} UTC*"
     return message
 
+# Function to get the last update times for each exam from the CSV file
+def get_last_update_times():
+    last_update_times = {}
+    try:
+        with open(BADGE_CSV, "r") as f:
+            reader = csv.reader(f)
+            for row in reader:
+                timestamp = row[0]
+                for i, (name, badge) in enumerate(BADGES.items()):
+                    if badge['exam_id']:
+                        exam_num = row[2 * i + 2]
+                        if name not in last_update_times or last_update_times[name][1] != exam_num:
+                            last_update_times[name] = (timestamp, exam_num)
+    except Exception as e:
+        logging.error(f"Error reading CSV file: {e}")
+    return last_update_times
+
 # Set up Discord bot with default intents
 intents = discord.Intents.default()
 bot = commands.Bot(command_prefix="!", intents=intents)
@@ -181,6 +198,16 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 async def on_ready():
     logging.info(f'Logged in as {bot.user}')
     send_status_message.start()
+
+# Command to display the last batch update times for exams
+@bot.command(name='last_batch')
+async def last_batch(ctx):
+    last_update_times = get_last_update_times()
+    message = "Last Batch Update Times:\n"
+    for name, (timestamp, _) in last_update_times.items():
+        message += f"{BADGES[name]['symbol']} **{name}**: {timestamp} UTC\n"
+    await ctx.send(message)
+    logging.info('Message "Last Exam Batch run" sent to Discord')
 
 # Task loop to send status message every hour
 @tasks.loop(hours=1)

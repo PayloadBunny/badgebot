@@ -8,6 +8,7 @@ BadgeBot is a Discord bot that periodically checks the number of your badges for
 - Compares the latest badge numbers with the previous values.
 - Posts an update message in a Discord channel if there are any changes in badge numbers.
 - Logs badge numbers with timestamps in a CSV file.
+- Shows the last batch runs.
 
 ## Installation
 
@@ -52,11 +53,17 @@ BadgeBot is a Discord bot that periodically checks the number of your badges for
    python bot.py
    ```
 
+6. **Bot commands**
+   Commands can be sent to the bot as a message
+   These commands are available to the bot:
+   - `!last_batch` The bot will respond with the date and time of the last batch of each exam.
+
+
 ## Configuration
 
 - DISCORD_TOKEN: Your Discord bot token.
 - DISCORD_CHANNEL_ID: The ID of the Discord channel where the bot will post updates.
-- CBBH_PATH, CBBH_EXAM, CPTS_PATH, CPTS_EXAM, CDSA_PATH, CDSA_EXAM, CWEE_PATH, CWEE_EXAM: The IDs for the respective badges. If you do not have an ID, you can simply leave the variable empty. The bot will then set the number to 0.
+- CBBH_PATH, CBBH_EXAM, CPTS_PATH, CPTS_EXAM, CDSA_PATH, CDSA_EXAM, CWEE_PATH, CWEE_EXAM, CAPE_PATH, CAPE_EXAM: The IDs for the respective badges. If you do not have an ID, you can simply leave the variable empty. The bot will then set the number to 0.
 
 You can find your Badge IDs here: [Hack The Box Academy - My Badges](https://academy.hackthebox.com/my-badges)
 
