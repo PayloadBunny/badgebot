@@ -191,6 +191,7 @@ def get_last_update_times():
 
 # Set up Discord bot with default intents
 intents = discord.Intents.default()
+intents.message_content = True  # Enable the message content intent
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 # Event handler for when the bot is ready
