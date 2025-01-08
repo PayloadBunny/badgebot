@@ -16,6 +16,9 @@ RUN apt-get update \
 RUN rm -rf /var/lib/apt/lists/*
 WORKDIR $APP_PATH
 
+ENV cacheBUSTER 2
+
+
 # Clone repository
 ARG REPO_URL=https://github.com/janssensjelle/badgebot.git
 ARG BRANCH=main
