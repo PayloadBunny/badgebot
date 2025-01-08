@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  certbot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_NAME: certbot
+        PYTHON_VERSION: 3.12.8
+    container_name: certbot-bot
+    volumes:
+      - ./data:/opt/certbot/data  # Persist data folder
+      - ./logs:/opt/certbot/logs  # Persist logs folder
+    environment:
+      # Environment variables passed to the container
+      DISCORD_TOKEN: ${DISCORD_TOKEN}
+      DISCORD_CHANNEL_ID: ${DISCORD_CHANNEL_ID}
+      CBBH_PATH: ${CBBH_PATH}
+      CBBH_EXAM: ${CBBH_EXAM}
+      CPTS_PATH: ${CPTS_PATH}
+      CPTS_EXAM: ${CPTS_EXAM}
+      CDSA_PATH: ${CDSA_PATH}
+      CDSA_EXAM: ${CDSA_EXAM}
+      CWEE_PATH: ${CWEE_PATH}
+      CWEE_EXAM: ${CWEE_EXAM}
+      CAPE_PATH: ${CAPE_PATH}
+      CAPE_EXAM: ${CAPE_EXAM}
+    restart: unless-stopped
+
