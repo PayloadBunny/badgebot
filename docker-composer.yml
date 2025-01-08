@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  certbot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_NAME: certbot
+        PYTHON_VERSION: 3.12.8
+    container_name: certbot-bot
+    volumes:
+      - ./data:/opt/certbot/data  # Persist data folder
+      - ./logs:/opt/certbot/logs  # Persist logs folder
+    restart: unless-stopped
+
