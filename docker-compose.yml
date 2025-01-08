@@ -14,17 +14,17 @@ services:
       - ./logs:/opt/certbot/logs  # Persist logs folder
     environment:
       # Environment variables passed to the container
-      DISCORD_TOKEN: your_discord_token
-      DISCORD_CHANNEL_ID: your_channel_id
-      CBBH_PATH: your_cbbh_path_id
-      CBBH_EXAM: your_cbbh_exam_id
-      CPTS_PATH: your_cpts_path_id
-      CPTS_EXAM: your_cpts_exam_id
-      CDSA_PATH: your_cdsa_path_id
-      CDSA_EXAM: your_cdsa_exam_id
-      CWEE_PATH: your_cwee_path_id
-      CWEE_EXAM: your_cwee_exam_id
-      CAPE_PATH: your_cape_path_id
-      CAPE_EXAM: your_cape_exam_id
+      DISCORD_TOKEN: ${DISCORD_TOKEN}
+      DISCORD_CHANNEL_ID: ${DISCORD_CHANNEL_ID}
+      CBBH_PATH: ${CBBH_PATH}
+      CBBH_EXAM: ${CBBH_EXAM}
+      CPTS_PATH: ${CPTS_PATH}
+      CPTS_EXAM: ${CPTS_EXAM}
+      CDSA_PATH: ${CDSA_PATH}
+      CDSA_EXAM: ${CDSA_EXAM}
+      CWEE_PATH: ${CWEE_PATH}
+      CWEE_EXAM: ${CWEE_EXAM}
+      CAPE_PATH: ${CAPE_PATH}
+      CAPE_EXAM: ${CAPE_EXAM}
     restart: unless-stopped
 
