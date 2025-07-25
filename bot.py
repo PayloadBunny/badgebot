@@ -183,15 +183,34 @@ def generate_update_message(differences, current_badges):
 def get_last_update_times():
     last_update_times = {}
     try:
-        with open(BADGE_CSV, "r") as f:
+        with open(BADGE_CSV, "r", encoding='utf-8') as f:
             reader = csv.reader(f)
-            for row in reader:
+            rows = list(reader)
+
+            if len(rows) < 2:
+                return last_update_times 
+
+            header = rows[0]
+            data_rows = rows[1:]
+
+            previous_values = {}
+
+            for row in data_rows:
                 timestamp = row[0]
                 for i, (name, badge) in enumerate(BADGES.items()):
-                    if badge['exam_id']:
-                        exam_num = row[2 * i + 2]
-                        if name not in last_update_times or last_update_times[name][1] != exam_num:
-                            last_update_times[name] = (timestamp, exam_num)
+                    if not badge['exam_id']:
+                        continue 
+
+                    exam_index = 2 * i + 2 
+                    if exam_index >= len(row):
+                        continue  
+
+                    exam_value = row[exam_index]
+
+                    if name not in previous_values or previous_values[name] != exam_value:
+                        last_update_times[name] = (timestamp, exam_value)
+                        previous_values[name] = exam_value
+
     except Exception as e:
         logging.error(f"Error reading CSV file: {e}")
     return last_update_times
@@ -211,8 +230,18 @@ async def on_ready():
 async def last_batch(ctx):
     last_update_times = get_last_update_times()
     message = "Last Batch Update Times:\n"
-    for name, (timestamp, _) in last_update_times.items():
-        message += f"{BADGES[name]['symbol']} **{name}**: {timestamp} UTC\n"
+    for name, badge in BADGES.items():
+        symbol = badge['symbol']
+        if badge['exam_id']:
+            # If there is a real value, display it, otherwise display ‘no data’.
+            if name in last_update_times:
+                timestamp = last_update_times[name][0]
+                message += f"{symbol} **{name}**: {timestamp} UTC\n"
+            else:
+                message += f"{symbol} **{name}**: no data\n"
+        else:
+            message += f"{symbol} **{name}**: no data\n"
+
     await ctx.send(message)
     logging.info('Message "Last Exam Batch run" sent to Discord')
 
