@@ -58,7 +58,9 @@ if not os.path.isfile(BADGE_CSV):
         'CWEE-Path', 
         'CWEE-Exam',
         'CAPE-Path', 
-        'CAPE-Exam',       
+        'CAPE-Exam',
+        'CJCA-Path',
+        'CJCA-Exam',       
         ]
     with open(BADGE_CSV, 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f, delimiter=',')
@@ -97,6 +99,11 @@ BADGES = {
         'symbol': ":woman_mage:",
         'path_id': os.getenv('CAPE_PATH'),
         'exam_id': os.getenv('CAPE_EXAM')
+    },
+    'CJCA': {
+        'symbol': ":woman_supervillain:",
+        'path_id': os.getenv('CJCA_PATH'),
+        'exam_id': os.getenv('CJCA_EXAM')
     }
 }
 
@@ -191,7 +198,6 @@ def get_last_update_times():
 
 # Set up Discord bot with default intents
 intents = discord.Intents.default()
-intents.message_content = True  # Enable the message content intent
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 # Event handler for when the bot is ready
@@ -235,27 +241,6 @@ async def send_status_message():
                 logging.info('Message sent to Discord')
         else:
             logging.info('No updates')
-            
-# Command to fetch and display the current badge numbers
-@bot.command(name='current_numbers')
-async def current_numbers(ctx):
-    current_badge_numbers = fetch_current_badge_numbers()
-    message = "Current Badge Numbers:\n"
-    
-    for i, (name, badge) in enumerate(BADGES.items()):
-        path_num, exam_num = current_badge_numbers[2 * i + 1], current_badge_numbers[2 * i + 2]
-        
-        if badge['path_id'] or badge['exam_id']:
-            message += f"{BADGES[name]['symbol']} **{name}** \n"
-            if badge['path_id']:
-                message += f"PATH: {path_num}\n"
-            if badge['exam_id']:
-                message += f"EXAM: {exam_num}\n"
-            message += "\n"
-    
-    message += f"*Timestamp: {current_badge_numbers[0]} UTC*"
-    await ctx.send(message)
-    logging.info('Current badge numbers command executed and message sent to Discord')
 
 
 # Ensure the bot is ready before starting the task loop

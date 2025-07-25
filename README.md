@@ -45,6 +45,8 @@ BadgeBot is a Discord bot that periodically checks the number of your badges for
    CWEE_EXAM=cwee_exam_id
    CAPE_PATH=cape_path_id
    CAPE_EXAM=cape_exam_id
+   CJCA_EXAM=cape_exam_id
+   CJCA_EXAM=cape_exam_id
    ````
 
 5. **Run the bot:**
@@ -63,7 +65,7 @@ BadgeBot is a Discord bot that periodically checks the number of your badges for
 
 - DISCORD_TOKEN: Your Discord bot token.
 - DISCORD_CHANNEL_ID: The ID of the Discord channel where the bot will post updates.
-- CBBH_PATH, CBBH_EXAM, CPTS_PATH, CPTS_EXAM, CDSA_PATH, CDSA_EXAM, CWEE_PATH, CWEE_EXAM, CAPE_PATH, CAPE_EXAM: The IDs for the respective badges. If you do not have an ID, you can simply leave the variable empty. The bot will then set the number to 0.
+- CBBH_PATH, CBBH_EXAM, CPTS_PATH, CPTS_EXAM, CDSA_PATH, CDSA_EXAM, CWEE_PATH, CWEE_EXAM, CAPE_PATH, CAPE_EXAM, CJCA_PATH, CJCA_EXAM: The IDs for the respective badges. If you do not have an ID, you can simply leave the variable empty. The bot will then set the number to 0.
 
 You can find your Badge IDs here: [Hack The Box Academy - My Badges](https://academy.hackthebox.com/my-badges)
 
