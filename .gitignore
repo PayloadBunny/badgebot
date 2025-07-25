@@ -167,3 +167,42 @@ data/*
 !data/.gitkeep
 logs/*
 !logs/.gitkeep
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon files used by macOS Finder
+Icon
+
+# macOS folder metadata
+__MACOSX/
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Windows system folders
+$RECYCLE.BIN/
+
+# Windows hidden files
+*.lnk
+
+# Spotlight (macOS Searchindex)
+.Spotlight-V100
+
+# macOS metadata
+.fseventsd
+
+# Temporary files (general)
+*.tmp
+*.temp
+*.swp
+*.bak
+*.old
+*.orig
+
+# macOS QuickLook
+._*
