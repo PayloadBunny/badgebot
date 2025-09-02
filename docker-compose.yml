@@ -16,8 +16,8 @@ services:
       # Environment variables passed to the container
       DISCORD_TOKEN: ${DISCORD_TOKEN}
       DISCORD_CHANNEL_ID: ${DISCORD_CHANNEL_ID}
-      CBBH_PATH: ${CBBH_PATH}
-      CBBH_EXAM: ${CBBH_EXAM}
+      CWES_PATH: ${CWES_PATH}
+      CWES_EXAM: ${CWES_EXAM}
       CPTS_PATH: ${CPTS_PATH}
       CPTS_EXAM: ${CPTS_EXAM}
       CDSA_PATH: ${CDSA_PATH}

@@ -49,8 +49,8 @@ if not os.path.exists(DATA_DIR):
 if not os.path.isfile(BADGE_CSV):
     fields = [
         'timestamp', 
-        'CBBH-Path', 
-        'CBBH-Exam', 
+        'CWES-Path', 
+        'CWES-Exam', 
         'CPTS-Path', 
         'CPTS-Exam', 
         'CDSA-Path', 
@@ -75,10 +75,10 @@ CHANNEL_ID = int(os.getenv('DISCORD_CHANNEL_ID'))
 
 # Badge IDs and symbols from environment variables
 BADGES = {
-    'CBBH': {
+    'CWES': {
         'symbol': ":spider_web:",
-        'path_id': os.getenv('CBBH_PATH'),
-        'exam_id': os.getenv('CBBH_EXAM')
+        'path_id': os.getenv('CWES_PATH'),
+        'exam_id': os.getenv('CWES_EXAM')
     },
     'CPTS': {
         'symbol': ":crossed_swords:",
